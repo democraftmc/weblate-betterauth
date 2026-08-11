@@ -5,5 +5,5 @@ class CustomOidcPkceAuth(OpenIdConnectAuth):
     
     name = 'custom-oidc-pkce'
     
-    # social_core handles standard OIDC discovery, token exchange, 
-    # and automatic PKCE/S256 code verifier generation out-of-the-box.
+    # Force Python Social Auth to generate and send PKCE code_challenge parameters
+    USE_PKCE = True
