@@ -1,11 +1,9 @@
-FROM weblate/weblate:latest
+FROM weblate/weblate
 
-# Switch to root to install packages
 USER root
 
-COPY ./weblate_custom /tmp/weblate_custom
+COPY weblate_customization /usr/src/weblate_customization
+RUN /app/venv/bin/uv pip install --no-cache-dir /usr/src/weblate_customization
+ENV DJANGO_SETTINGS_MODULE=weblate_customization.settings
 
-RUN pip install --no-cache-dir /tmp/weblate_custom
-
-# Revert to weblate user for the base image
-USER weblate
+USER 1000
