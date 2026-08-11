@@ -10,3 +10,11 @@ AUTHENTICATION_BACKENDS = AUTHENTICATION_BACKENDS + (
 SOCIAL_AUTH_CUSTOM_OIDC_PKCE_KEY = os.environ.get('SOCIAL_AUTH_CUSTOM_OIDC_PKCE_KEY')
 SOCIAL_AUTH_CUSTOM_OIDC_PKCE_SECRET = os.environ.get('SOCIAL_AUTH_CUSTOM_OIDC_PKCE_SECRET')
 SOCIAL_AUTH_CUSTOM_OIDC_PKCE_OIDC_ENDPOINT = os.environ.get('SOCIAL_AUTH_CUSTOM_OIDC_PKCE_OIDC_ENDPOINT')
+
+# Prevent Python Social Auth from requesting default ['openid', 'profile', 'email']
+SOCIAL_AUTH_CUSTOM_OIDC_PKCE_IGNORE_DEFAULT_SCOPE = True
+
+# Define the exact scope(s) allowed by your Better Auth setup
+# (Adjust this list if your Better Auth instance expects something like ['user'] or ['read'])
+SOCIAL_AUTH_CUSTOM_OIDC_PKCE_SCOPE = ['openid']  # or [] if no scopes are required
+
