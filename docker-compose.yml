@@ -1,0 +1,21 @@
+services:
+  weblate:
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - WEBLATE_SERVER_EMAIL=admin@example.com
+      - WEBLATE_DEFAULT_FROM_EMAIL=admin@example.com
+      - POSTGRES_HOST=db
+      - POSTGRES_DATABASE=weblate
+      - POSTGRES_USER=weblate
+      - POSTGRES_PASSWORD=your_secure_db_password
+      - REDIS_HOST=redis
+      - WEBLATE_CONFIG=/app/data/settings_custom.py
+    volumes:
+      - weblate-data:/app/data
+      - ./settings_custom.py:/app/data/settings_custom.py:r
+
+volumes:
+  weblate-data:
